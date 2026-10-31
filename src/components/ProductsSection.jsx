@@ -4,8 +4,12 @@ import './ProductsSection.css';
 
 const translations = {
   ar: {
-    sectionTitle: "المنتجات",
     searchPlaceholder: "ابحث عن منتج...",
+    titles: {
+      best: "الأكثر مبيعا",
+      sale: "التخفيضات",
+      new: "جديد"
+    },
     badges: {
       best: "الأكثر مبيعا",
       sale: "التخفيضات",
@@ -13,8 +17,12 @@ const translations = {
     }
   },
   en: {
-    sectionTitle: "Products",
     searchPlaceholder: "Search for a product...",
+    titles: {
+      best: "Best Sellers",
+      sale: "Sale",
+      new: "New"
+    },
     badges: {
       best: "Best Seller",
       sale: "Sale",
@@ -23,11 +31,10 @@ const translations = {
   }
 };
 
-export default function ProductsSection({ currentLang = 'ar' }) {
+export default function ProductsSection({ currentLang = 'ar', onViewDetails }) {
   const t = translations[currentLang] || translations.ar;
   const [searchTerm, setSearchTerm] = useState('');
 
-  // عينة منتجات المتجر (قفازات، نظارات، أوشحة)
   const products = [
     {
       id: 1,
@@ -35,8 +42,8 @@ export default function ProductsSection({ currentLang = 'ar' }) {
       price: 1500,
       oldPrice: null,
       badge: t.badges.best,
-      hasVariants: false,
-      image: '/hero-photo1.jpg'
+      category: 'best',
+      images: ['/hero-photo1.jpg', '/hero-photo2.jpg', '/hero-photo1.jpg']
     },
     {
       id: 2,
@@ -44,8 +51,8 @@ export default function ProductsSection({ currentLang = 'ar' }) {
       price: 1500,
       oldPrice: null,
       badge: t.badges.best,
-      hasVariants: true,
-      image: '/hero-photo2.jpg'
+      category: 'best',
+      images: ['/hero-photo2.jpg', '/hero-photo1.jpg', '/hero-photo2.jpg']
     },
     {
       id: 3,
@@ -53,8 +60,8 @@ export default function ProductsSection({ currentLang = 'ar' }) {
       price: 1500,
       oldPrice: null,
       badge: t.badges.best,
-      hasVariants: true,
-      image: '/hero-photo1.jpg'
+      category: 'best',
+      images: ['/hero-photo1.jpg', '/hero-photo2.jpg', '/hero-photo1.jpg']
     },
     {
       id: 4,
@@ -62,8 +69,8 @@ export default function ProductsSection({ currentLang = 'ar' }) {
       price: 1500,
       oldPrice: 2000,
       badge: t.badges.sale,
-      hasVariants: true,
-      image: '/hero-photo2.jpg'
+      category: 'sale',
+      images: ['/hero-photo2.jpg', '/hero-photo1.jpg', '/hero-photo2.jpg']
     },
     {
       id: 5,
@@ -71,8 +78,8 @@ export default function ProductsSection({ currentLang = 'ar' }) {
       price: 1500,
       oldPrice: 2000,
       badge: t.badges.sale,
-      hasVariants: true,
-      image: '/hero-photo1.jpg'
+      category: 'sale',
+      images: ['/hero-photo1.jpg', '/hero-photo2.jpg', '/hero-photo1.jpg']
     },
     {
       id: 6,
@@ -80,8 +87,8 @@ export default function ProductsSection({ currentLang = 'ar' }) {
       price: 1500,
       oldPrice: 2000,
       badge: t.badges.sale,
-      hasVariants: true,
-      image: '/hero-photo2.jpg'
+      category: 'sale',
+      images: ['/hero-photo2.jpg', '/hero-photo1.jpg', '/hero-photo2.jpg']
     },
     {
       id: 7,
@@ -89,8 +96,8 @@ export default function ProductsSection({ currentLang = 'ar' }) {
       price: 1500,
       oldPrice: null,
       badge: t.badges.new,
-      hasVariants: false,
-      image: '/hero-photo1.jpg'
+      category: 'new',
+      images: ['/hero-photo1.jpg', '/hero-photo2.jpg', '/hero-photo1.jpg']
     },
     {
       id: 8,
@@ -98,8 +105,8 @@ export default function ProductsSection({ currentLang = 'ar' }) {
       price: 1500,
       oldPrice: null,
       badge: t.badges.new,
-      hasVariants: false,
-      image: '/hero-photo2.jpg'
+      category: 'new',
+      images: ['/hero-photo2.jpg', '/hero-photo1.jpg', '/hero-photo2.jpg']
     },
     {
       id: 9,
@@ -107,8 +114,8 @@ export default function ProductsSection({ currentLang = 'ar' }) {
       price: 1500,
       oldPrice: null,
       badge: t.badges.new,
-      hasVariants: false,
-      image: '/hero-photo1.jpg'
+      category: 'new',
+      images: ['/hero-photo1.jpg', '/hero-photo2.jpg', '/hero-photo1.jpg']
     }
   ];
 
@@ -116,12 +123,14 @@ export default function ProductsSection({ currentLang = 'ar' }) {
     p.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const bestSellers = filteredProducts.filter(p => p.category === 'best');
+  const saleProducts = filteredProducts.filter(p => p.category === 'sale');
+  const newProducts = filteredProducts.filter(p => p.category === 'new');
+
   return (
     <section className="products-section" id="products">
       <div className="products-container">
-        <h2 className="section-main-title">{t.sectionTitle}</h2>
         
-        {/* خانة البحث */}
         <div className="search-bar-container">
           <input 
             type="text" 
@@ -132,12 +141,42 @@ export default function ProductsSection({ currentLang = 'ar' }) {
           />
         </div>
 
-        {/* شبكة الكروت */}
-        <div className="products-grid">
-          {filteredProducts.map(product => (
-            <ProductCard key={product.id} product={product} currentLang={currentLang} />
-          ))}
-        </div>
+        {/* 1. قسم الأكثر مبيعا */}
+        {bestSellers.length > 0 && (
+          <div className="category-block" id="best">
+            <h2 className="section-category-title">{t.titles.best}</h2>
+            <div className="products-grid">
+              {bestSellers.map(product => (
+                <ProductCard key={product.id} product={product} currentLang={currentLang} onViewDetails={onViewDetails} />
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* 2. قسم التخفيضات */}
+        {saleProducts.length > 0 && (
+          <div className="category-block" id="sale">
+            <h2 className="section-category-title">{t.titles.sale}</h2>
+            <div className="products-grid">
+              {saleProducts.map(product => (
+                <ProductCard key={product.id} product={product} currentLang={currentLang} onViewDetails={onViewDetails} />
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* 3. قسم الجديد */}
+        {newProducts.length > 0 && (
+          <div className="category-block" id="new">
+            <h2 className="section-category-title">{t.titles.new}</h2>
+            <div className="products-grid">
+              {newProducts.map(product => (
+                <ProductCard key={product.id} product={product} currentLang={currentLang} onViewDetails={onViewDetails} />
+              ))}
+            </div>
+          </div>
+        )}
+
       </div>
     </section>
   );

@@ -1,0 +1,84 @@
+/* src/components/Testimonials.css */
+.testimonials-section {
+  width: 100%;
+  padding: 4rem 5%;
+  background-color: #ffffff;
+}
+
+.testimonials-container {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+/* الخط الفاصل العلوي */
+.section-divider {
+  width: 100%;
+  height: 1.5px;
+  background-color: #dcd2c4;
+  margin-bottom: 2.5rem;
+}
+
+/* عنوان القسم في المنتصف */
+.section-main-title {
+  text-align: center;
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #2c2c2c;
+  margin-bottom: 3rem;
+  letter-spacing: 1px;
+}
+
+/* شبكة الكروت الأربعة بجانب بعضها */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+/* تنسيق الكرت المستدير الزوايا ليناسب عرض الصور الكاملة */
+.testimonial-card {
+  width: 100%;
+  height: 380px; /* زيادة الارتفاع قليلاً لتظهر الصورة كاملة وبوضوح */
+  border: 1.5px solid #333333;
+  border-radius: 20px;
+  background-color: #ffffff;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.testimonial-img-box {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* جعل الصورة تظهر كاملة بدون قص باستخدام contain */
+.testimonial-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* التجاوب مع الهواتف والأجهزة اللوحية */
+@media (max-width: 1024px) {
+  .testimonials-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,167 @@
+/* src/components/Footer.css */
+.store-footer {
+  width: 100%;
+  background-color: #ffffff;
+  border-top: 1.5px solid #e8dfd1;
+  padding: 4rem 5% 3rem 5%;
+  margin-top: 5rem;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.02);
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.footer-col {
+  flex: 1;
+  min-width: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.footer-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #2c2c2c;
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+/* خط فاصل أنيق تحت العنوان بلون المتجر البني */
+.footer-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 2px;
+  background-color: #8c6239;
+  border-radius: 2px;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.footer-text {
+  font-size: 1.05rem;
+  color: #555555;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.footer-text:hover {
+  color: #8c6239;
+}
+
+.footer-social-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* أيقونة مربعة أنيقة ومتناسقة مع الهوية */
+.footer-checkbox-icon {
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid #8c6239;
+  border-radius: 4px;
+  display: inline-block;
+  background-color: #fcf9f5;
+  box-shadow: 0 2px 4px rgba(140, 98, 57, 0.1);
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.footer-links li a {
+  text-decoration: none;
+  color: #555555;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.2s, transform 0.2s;
+  display: inline-block;
+}
+
+.footer-links li a:hover {
+  color: #8c6239;
+  transform: translateX(-3px);
+}
+
+/* خطوط فصل عمودية ناعمة بين الأعمدة */
+.footer-separator {
+  width: 1px;
+  height: 100px;
+  background-color: #e8dfd1;
+  align-self: center;
+}
+/* تنسيق الأيقونات والنصوص بجانبها في الفوتر */
+.footer-with-icon {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #555555;
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+.footer-icon {
+  color: #8c6239; /* لون الأيقونات بلون المتجر المميز */
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+
+.footer-with-icon:hover .footer-icon {
+  transform: scale(1.1);
+}
+/* إزالة الخط السفلي من روابط الفوتر */
+.footer-link-item {
+  text-decoration: none !important;
+}
+
+.footer-link-item:hover {
+  text-decoration: none !important;
+}
+/* التجاوب مع الهواتف والشاشات الصغيرة */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+  }
+
+  .footer-separator {
+    display: none;
+  }
+
+  .footer-col {
+    width: 100%;
+    border-bottom: 1px solid #f0e6db;
+    padding-bottom: 2rem;
+  }
+
+  .footer-col:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+}
