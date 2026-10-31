@@ -136,7 +136,7 @@
 }
 .brand-first-letter {
   color: #8c6239;
-}
+} 
 /* التجاوب مع الهواتف */
 @media (max-width: 768px) {
   .nav-links {

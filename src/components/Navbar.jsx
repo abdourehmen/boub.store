@@ -2,8 +2,25 @@ import React, { useState } from 'react';
 import { Globe } from 'lucide-react';
 import './Navbar.css';
 
-export default function Navbar({ currentLang, setLang }) {
+// قاموس الترجمة لنصوص شريط التنقل
+const translations = {
+  ar: {
+    home: "الرئيسية",
+    new: "الجديد",
+    best: "الأكثر مبيعا",
+    sale: "التخفيضات"
+  },
+  en: {
+    home: "Home",
+    new: "New",
+    best: "Best Sellers",
+    sale: "Sale"
+  }
+};
+
+export default function Navbar({ currentLang = 'ar', setLang }) {
   const [isOpen, setIsOpen] = useState(false);
+  const t = translations[currentLang] || translations.ar;
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -21,18 +38,18 @@ export default function Navbar({ currentLang, setLang }) {
         <span className="brand-first-letter">B</span>OUB
       </a>
       
-      {/* روابط التنقل */}
+      {/* روابط التنقل المترجمة */}
       <ul className="nav-links">
-        <li><a href="#home">الرئيسية</a></li>
-        <li><a href="#new">الجديد</a></li>
-        <li><a href="#best">الأكثر مبيعا</a></li>
-        <li><a href="#sale">التخفيضات</a></li>
+        <li><a href="#home">{t.home}</a></li>
+        <li><a href="#new">{t.new}</a></li>
+        <li><a href="#best">{t.best}</a></li>
+        <li><a href="#sale">{t.sale}</a></li>
       </ul>
 
       {/* الأيقونات واللوكو الدائري وقائمة اللغات */}
       <div className="nav-actions">
         <div className="nav-logo-circle">
-          <img src="/logo.png" alt="Store Logo" />
+          <img src="/logo.jpg" alt="Store Logo" />
         </div>
         
         <div className="lang-dropdown-container">

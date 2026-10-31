@@ -8,18 +8,42 @@
   overflow: hidden;
 }
 
+.hero-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  pointer-events: none;
+}
+
+.hero-slide.active {
+  opacity: 1;
+  position: relative;
+  pointer-events: auto;
+}
+
 .hero-banner-img {
   width: 100%;
   height: auto;
   display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
 }
 
-.hero-banner-img.active {
-  opacity: 1;
-  position: relative;
+/* افتراضياً: إظهار صورة الحاسوب وإخفاء صورة الجوال */
+.mobile-img {
+  display: none;
+}
+.desktop-img {
+  display: block;
+}
+
+/* عند التصفح من الجوال (أقل من 768 بكسل): إظهار صورة الجوال وإخفاء صورة الحاسوب */
+@media (max-width: 768px) {
+  .desktop-img {
+    display: none;
+  }
+  .mobile-img {
+    display: block;
+  }
 }
