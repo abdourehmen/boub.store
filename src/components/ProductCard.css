@@ -1,0 +1,158 @@
+/* src/components/ProductCard.css */
+.product-card {
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+}
+
+.product-image-box {
+  width: 100%;
+  height: 330px;
+  border: 1.5px solid #333333;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.3s ease;
+}
+
+.product-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background-color: #ffffff;
+  border: 1px solid #8c6239;
+  color: #8c6239;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  z-index: 2;
+}
+
+/* الأيقونات الجانبية عند تمرير الماوس (زر العين والدائرة الثانية) */
+.product-hover-actions {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 3;
+}
+
+.product-image-box:hover .product-hover-actions {
+  opacity: 1;
+  visibility: visible;
+}
+
+.action-circle-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  border: 1.5px solid #8c6239;
+  color: #8c6239;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  transition: background-color 0.2s, color 0.2s, transform 0.2s;
+  padding: 0;
+}
+
+.action-circle-btn:hover {
+  background-color: #8c6239;
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+.dot-inner {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #8c6239;
+}
+
+.action-circle-btn:hover .dot-inner {
+  background-color: #ffffff;
+}
+
+/* نقاط التنقل بين الصور الثلاثة */
+.image-dots-container {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  background-color: rgba(255, 255, 255, 0.75);
+  padding: 6px 10px;
+  border-radius: 20px;
+  backdrop-filter: blur(4px);
+  z-index: 2;
+}
+
+.image-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background-color: #ccc;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.image-dot.active {
+  background-color: #8c6239;
+  transform: scale(1.2);
+}
+
+/* معلومات الكرت (اسم المنتج والسعر بحجم أكبر) */
+.product-info {
+  text-align: center;
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.product-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333333;
+  margin: 0;
+}
+
+.product-price {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #8c6239;
+}
+
+.old-price {
+  text-decoration: line-through;
+  color: #999;
+  font-weight: 400;
+  font-size: 0.95rem;
+}

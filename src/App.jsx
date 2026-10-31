@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import Services from './components/Services';
+import ProductsSection from './components/ProductsSection'; // استيراد قسم المنتجات
 
 export default function App() {
-  // حالة اللغة (افتراضياً العربية 'ar')
   const [lang, setLang] = useState('ar');
 
   return (
     <div>
-      {/* تمرير اللغة ودالة التغيير إلى الـ Navbar */}
       <Navbar currentLang={lang} setLang={setLang} />
-      
-      {/* تمرير اللغة الحالية إلى الـ Hero إذا أردت ترجمة محتواه لاحقاً */}
-      <Hero lang={lang} />
+      <Hero currentLang={lang} />
+      <Services currentLang={lang} />
+      <ProductsSection currentLang={lang} /> {/* عرض المنتجات */}
     </div>
   );
 }

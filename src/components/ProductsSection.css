@@ -1,0 +1,64 @@
+/* src/components/ProductsSection.css */
+.products-section {
+  width: 100%;
+  padding: 4rem 5%;
+  background-color: #faf8f5;
+}
+
+.products-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-main-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #2c2c2c;
+  margin-bottom: 2rem;
+  letter-spacing: 1px;
+}
+
+.search-bar-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+.search-input {
+  width: 100%;
+  max-width: 600px;
+  padding: 1rem 1.5rem;
+  border: 1px solid #dcd2c4;
+  border-radius: 30px;
+  font-size: 1rem;
+  outline: none;
+  background-color: #ffffff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+  transition: border-color 0.3s, box-shadow 0.3s;
+  text-align: right;
+}
+
+.search-input:focus {
+  border-color: #8c6239;
+  box-shadow: 0 4px 20px rgba(140, 98, 57, 0.1);
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+/* التجاوب مع الهواتف والأجهزة اللوحية */
+@media (max-width: 992px) {
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+}
