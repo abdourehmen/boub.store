@@ -1,0 +1,149 @@
+/* src/components/Navbar.css */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 3%;
+  background-color: #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+}
+
+.nav-brand {
+  font-size: 1.9rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #2c2c2c;
+  text-decoration: none;
+  order: 1;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  order: 2;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #4a4a4a;
+  font-weight: 600;
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #8c6239;
+}
+
+.nav-actions {
+  display: flex;
+  gap: 1.2rem;
+  align-items: center;
+  order: 3;
+}
+
+.nav-logo-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #8c6239;
+}
+
+.nav-logo-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #2c2c2c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s, color 0.2s;
+  padding: 0.4rem;
+}
+
+.icon-btn:hover {
+  transform: scale(1.1);
+  color: #8c6239;
+}
+/* تنسيق قائمة اختيار اللغات المنسدلة */
+.lang-dropdown-container {
+  position: relative;
+}
+
+.lang-menu {
+  position: absolute;
+  top: 120%;
+  right: 0;
+  background-color: #ffffff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-width: 130px;
+  z-index: 1001;
+  border: 1px solid #e8dfd1;
+}
+
+.lang-option {
+  background: none;
+  border: none;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #2c2c2c;
+  transition: background-color 0.2s, color 0.2s;
+  width: 100%;
+  text-align: right;
+}
+
+.lang-option:hover {
+  background-color: #f5efe6;
+  color: #8c6239;
+}
+
+.flag-icon {
+  font-size: 1.25rem;
+}
+.flag-svg {
+  width: 24px;
+  height: 16px;
+  border-radius: 3px;
+  object-fit: cover;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+.brand-first-letter {
+  color: #8c6239;
+}
+/* التجاوب مع الهواتف */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+  
+  .navbar {
+    padding: 1rem 5%;
+  }
+}
