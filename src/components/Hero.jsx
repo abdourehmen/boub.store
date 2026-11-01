@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import './Hero.css';
 
-// قائمة الشرائح مع تخصيص صورة لكل من الكمبيوتر والجوال
+// قائمة الشرائح مع تخصيص صورة لكل من الكمبيوتر والجوال (تمت إضافة الشريحة الثالثة)
 const heroSlides = [
   {
     desktop: '/hero-banner-img desktop-img1.jpg',
-    mobile: '/hero-banner-img mobile-img1.jpg' // صورة الجوال للشريحة الأولى
+    mobile: '/hero-banner-img mobile-img1.jpg'
   },
   {
     desktop: '/hero-banner-img desktop-img2.jpg',
-    mobile: '/hero-banner-img mobile-img2.jpg' // صورة الجوال للشريحة الثانية
+    mobile: '/hero-banner-img mobile-img2.jpg'
+  },
+  {
+    desktop: '/hero-banner-img desktop-img3.jpg', // صورة الكمبيوتر للشريحة الثالثة
+    mobile: '/hero-banner-img mobile-img3.jpg'   // صورة الجوال للشريحة الثالثة
   }
 ];
 
@@ -19,7 +23,7 @@ export default function Hero() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % heroSlides.length);
-    }, 4000); // تتغير الصور كل 4 ثوانٍ
+    }, 2000); // تتغير الصور تلقائياً كل 2 ثوانٍ
 
     return () => clearInterval(interval);
   }, []);

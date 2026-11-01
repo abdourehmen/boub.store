@@ -3,25 +3,28 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 9999;
   padding: 1rem;
+  box-sizing: border-box;
 }
 
 .modal-card {
   width: 100%;
   max-width: 850px;
+  max-height: 90vh; /* أقصى ارتفاع للنافذة بناءً على الشاشة الحالية */
+  overflow-y: auto; /* السماح بالتمرير الداخلي إذا كانت الشاشة صغيرة */
   background-color: #ffffff;
   border: 1.5px solid #333333;
   border-radius: 24px;
   padding: 2rem;
   position: relative;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
   box-sizing: border-box;
 }
 
@@ -35,6 +38,7 @@
   cursor: pointer;
   color: #333333;
   transition: color 0.2s;
+  z-index: 10;
 }
 
 .modal-close-btn:hover {
@@ -55,7 +59,6 @@
   justify-content: center;
 }
 
-/* صندوق الصورة المحسّن للجوال والكمبيوتر */
 .modal-image-box {
   position: relative;
   width: 100%;
@@ -72,7 +75,7 @@
 .modal-product-img {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* عرض الصورة كاملة وواضحة بدون قص */
+  object-fit: contain;
 }
 
 .modal-slider-btn {
@@ -190,31 +193,25 @@
   border-color: #8c6239;
 }
 
-/* التجاوب مع الهواتف والشاشات الصغيرة */
 @media (max-width: 768px) {
   .modal-card {
     padding: 1.5rem;
     max-width: 95%;
   }
-
   .modal-content-grid {
     flex-direction: column;
     gap: 1.5rem;
   }
-
   .modal-separator {
     display: none;
   }
-
   .modal-image-box {
-    height: 220px; /* ضبط ارتفاع مناسب جداً ومريح للعين على الجوال */
+    height: 220px;
   }
-
   .modal-info-section {
     width: 100%;
     text-align: center;
   }
-
   .modal-info-row {
     justify-content: space-between;
     width: 100%;

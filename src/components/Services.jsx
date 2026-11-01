@@ -1,4 +1,5 @@
 import React from 'react';
+import AnimateOnScroll from './AnimateOnScroll'; // استيراد مكون الأنيشن
 import './Services.css';
 
 // قاموس الترجمة لقسم الخدمات
@@ -46,15 +47,18 @@ export default function Services({ currentLang = 'ar' }) {
     <section className="services-section">
       <div className="services-container">
         {servicesData.map((item, index) => (
-          <div className="service-item" key={index}>
-            <div className="service-icon-circle">
-              <img src={item.icon} alt={item.title} />
+          /* تغليف كل بطاقة بخاصية الأنيشن مع تأخير زمني تصاعدي (delay) */
+          <AnimateOnScroll animation="zoom-in" delay={index * 150} key={index}>
+            <div className="service-item">
+              <div className="service-icon-circle">
+                <img src={item.icon} alt={item.title} />
+              </div>
+              <div className="service-text">
+                <h4 className="service-title">{item.title}</h4>
+                <p className="service-subtitle">{item.subtitle}</p>
+              </div>
             </div>
-            <div className="service-text">
-              <h4 className="service-title">{item.title}</h4>
-              <p className="service-subtitle">{item.subtitle}</p>
-            </div>
-          </div>
+          </AnimateOnScroll>
         ))}
       </div>
     </section>

@@ -80,7 +80,6 @@ export default function ProductModal({ product, currentLang = 'ar', onClose, onC
               <span className="modal-price">{product.price}da</span>
             </div>
 
-            {/* الانتقال لفتح نافذة الطلب وإغلاق نافذة التفاصيل */}
             <button className="modal-order-btn" onClick={() => onCheckout && onCheckout(product, selectedSize)}>
               {t.orderBtn}
             </button>

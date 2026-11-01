@@ -18,9 +18,13 @@
   pointer-events: none;
 }
 
+/* جعل الشريحة الأولى نسبية لتثبيت ارتفاع الحاوية وتجنب القفزات */
+.hero-slide:first-child {
+  position: relative;
+}
+
 .hero-slide.active {
   opacity: 1;
-  position: relative;
   pointer-events: auto;
 }
 

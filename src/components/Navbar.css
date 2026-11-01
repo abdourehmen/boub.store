@@ -206,3 +206,31 @@
     animation: menuSlideDown 0.35s ease forwards; /* تفعيل أنميشن النزول السلس */
   }
 }
+/* أنميشن ظهور قائمة اللغات بسلاسة وفخامة */
+@keyframes dropdownFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* تحديث كلاس lang-menu لتفعيل الأنيشن عند فتحها */
+.lang-menu {
+  position: absolute;
+  top: 120%;
+  right: 0;
+  background-color: #ffffff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-width: 140px;
+  z-index: 1001;
+  border: 1px solid #e8dfd1;
+  animation: dropdownFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards; /* تطبيق الأنيشن هنا */
+}

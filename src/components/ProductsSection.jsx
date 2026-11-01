@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import ProductCard from './ProductCard';
+import AnimateOnScroll from './AnimateOnScroll';
 import './ProductsSection.css';
 
 const translations = {
@@ -146,15 +147,17 @@ export default function ProductsSection({ currentLang = 'ar', onViewDetails }) {
       <div className="products-container">
         
         {/* خانة البحث */}
-        <div className="search-bar-container">
-          <input 
-            type="text" 
-            placeholder={t.searchPlaceholder} 
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="search-input"
-          />
-        </div>
+        <AnimateOnScroll animation="slide-right">
+          <div className="search-bar-container">
+            <input 
+              type="text" 
+              placeholder={t.searchPlaceholder} 
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="search-input"
+            />
+          </div>
+        </AnimateOnScroll>
 
         {/* 1. قسم الأكثر مبيعا */}
         {bestSellers.length > 0 && (
@@ -165,9 +168,12 @@ export default function ProductsSection({ currentLang = 'ar', onViewDetails }) {
             <div className="slider-outer-container">
               <button className="slider-side-btn slider-prev" onClick={() => scrollContainer(bestRef, 'left')}>&#10094;</button>
               <div className="products-slider" ref={bestRef}>
-                {bestSellers.map(product => (
+                {bestSellers.map((product, index) => (
                   <div className="slider-card-wrapper" key={product.id}>
-                    <ProductCard product={product} currentLang={currentLang} onViewDetails={onViewDetails} />
+                    {/* ظهور الكروت بالترتيب وبشكل متسلسل */}
+                    <AnimateOnScroll animation="zoom-in" delay={index * 120}>
+                      <ProductCard product={product} currentLang={currentLang} onViewDetails={onViewDetails} />
+                    </AnimateOnScroll>
                   </div>
                 ))}
               </div>
@@ -185,9 +191,11 @@ export default function ProductsSection({ currentLang = 'ar', onViewDetails }) {
             <div className="slider-outer-container">
               <button className="slider-side-btn slider-prev" onClick={() => scrollContainer(saleRef, 'left')}>&#10094;</button>
               <div className="products-slider" ref={saleRef}>
-                {saleProducts.map(product => (
+                {saleProducts.map((product, index) => (
                   <div className="slider-card-wrapper" key={product.id}>
-                    <ProductCard product={product} currentLang={currentLang} onViewDetails={onViewDetails} />
+                    <AnimateOnScroll animation="zoom-in" delay={index * 120}>
+                      <ProductCard product={product} currentLang={currentLang} onViewDetails={onViewDetails} />
+                    </AnimateOnScroll>
                   </div>
                 ))}
               </div>
@@ -205,9 +213,11 @@ export default function ProductsSection({ currentLang = 'ar', onViewDetails }) {
             <div className="slider-outer-container">
               <button className="slider-side-btn slider-prev" onClick={() => scrollContainer(newRef, 'left')}>&#10094;</button>
               <div className="products-slider" ref={newRef}>
-                {newProducts.map(product => (
+                {newProducts.map((product, index) => (
                   <div className="slider-card-wrapper" key={product.id}>
-                    <ProductCard product={product} currentLang={currentLang} onViewDetails={onViewDetails} />
+                    <AnimateOnScroll animation="zoom-in" delay={index * 120}>
+                      <ProductCard product={product} currentLang={currentLang} onViewDetails={onViewDetails} />
+                    </AnimateOnScroll>
                   </div>
                 ))}
               </div>

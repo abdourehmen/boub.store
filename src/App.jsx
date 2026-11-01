@@ -6,36 +6,39 @@ import ProductsSection from './components/ProductsSection';
 import Testimonials from './components/Testimonials';
 import Footer from './components/Footer';
 import ProductModal from './components/ProductModal';
-import CheckoutModal from './components/CheckoutModal'; // استيراد نافذة إتمام الطلب
+import CheckoutModal from './components/CheckoutModal';
+import './components/Animations.css';
 
 export default function App() {
   const [lang, setLang] = useState('ar');
-  const [selectedProduct, setSelectedProduct] = useState(null); // منتج نافذة التفاصيل
-  const [checkoutData, setCheckoutData] = useState(null); // بيانات منتج نافذة الطلب
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [checkoutData, setCheckoutData] = useState(null);
 
   return (
-    <div>
-      <Navbar currentLang={lang} setLang={setLang} />
-      <Hero currentLang={lang} />
-      <Services currentLang={lang} />
-      <ProductsSection currentLang={lang} onViewDetails={setSelectedProduct} />
-      <Testimonials currentLang={lang} />
-      <Footer currentLang={lang} />
+    <>
+      {/* محتوى الموقع الأساسي مغلف بأنيشن فتح الصفحة */}
+      <div className="page-entrance-wrapper">
+        <Navbar currentLang={lang} setLang={setLang} />
+        <Hero currentLang={lang} />
+        <Services currentLang={lang} />
+        <ProductsSection currentLang={lang} onViewDetails={setSelectedProduct} />
+        <Testimonials currentLang={lang} />
+        <Footer currentLang={lang} />
+      </div>
 
-      {/* نافذة تفاصيل المنتج */}
+      {/* النوافذ المنبثقة خارج الحاوية لضمان ظهورها بدقة في مكان التصفح الحالي */}
       {selectedProduct && (
         <ProductModal 
           product={selectedProduct} 
           currentLang={lang} 
           onClose={() => setSelectedProduct(null)}
           onCheckout={(product, size) => {
-            setSelectedProduct(null); // إغلاق نافذة تفاصيل المنتج تماماً
-            setCheckoutData({ product, selectedSize: size }); // فتح نافذة إتمام الطلب
+            setSelectedProduct(null);
+            setCheckoutData({ product, selectedSize: size });
           }}
         />
       )}
 
-      {/* نافذة إتمام الطلب وملء المعلومات */}
       {checkoutData && (
         <CheckoutModal 
           product={checkoutData.product} 
@@ -44,6 +47,6 @@ export default function App() {
           onClose={() => setCheckoutData(null)} 
         />
       )}
-    </div>
+    </>
   );
 }
