@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Globe } from 'lucide-react';
+import { Globe, Menu, X } from 'lucide-react';
 import './Navbar.css';
 
 // قاموس الترجمة لنصوص شريط التنقل
@@ -20,6 +20,7 @@ const translations = {
 
 export default function Navbar({ currentLang = 'ar', setLang }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false); // حالة قائمة الجوال
   const t = translations[currentLang] || translations.ar;
 
   const toggleDropdown = () => {
@@ -33,17 +34,26 @@ export default function Navbar({ currentLang = 'ar', setLang }) {
 
   return (
     <nav className="navbar">
+      {/* زر القائمة الخاص بالجوال يظهر في أقصى اليسار/اليمين */}
+      <button 
+        className="mobile-menu-btn" 
+        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        aria-label="قائمة التنقل"
+      >
+        {mobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
+      </button>
+
       {/* شعار المتجر مع تلوين الحرف الأول */}
       <a href="#home" className="nav-brand">
         <span className="brand-first-letter">B</span>OUB
       </a>
       
-      {/* روابط التنقل المترجمة */}
-      <ul className="nav-links">
-        <li><a href="#home">{t.home}</a></li>
-        <li><a href="#new">{t.new}</a></li>
-        <li><a href="#best">{t.best}</a></li>
-        <li><a href="#sale">{t.sale}</a></li>
+      {/* روابط التنقل المترجمة (للكمبيوتر والجوال عند الفتح) */}
+      <ul className={`nav-links ${mobileMenuOpen ? 'active' : ''}`}>
+        <li><a href="#home" onClick={() => setMobileMenuOpen(false)}>{t.home}</a></li>
+        <li><a href="#new" onClick={() => setMobileMenuOpen(false)}>{t.new}</a></li>
+        <li><a href="#best" onClick={() => setMobileMenuOpen(false)}>{t.best}</a></li>
+        <li><a href="#sale" onClick={() => setMobileMenuOpen(false)}>{t.sale}</a></li>
       </ul>
 
       {/* الأيقونات واللوكو الدائري وقائمة اللغات */}

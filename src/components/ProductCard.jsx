@@ -10,7 +10,11 @@ export default function ProductCard({ product, currentLang = 'ar', onViewDetails
     : [product.image];
 
   return (
-    <div className="product-card">
+    <div 
+      className="product-card" 
+      onClick={() => onViewDetails && onViewDetails(product)}
+      style={{ cursor: 'pointer' }}
+    >
       <div className="product-image-box">
         {product.badge && (
           <span className="product-badge">{product.badge}</span>
@@ -28,22 +32,27 @@ export default function ProductCard({ product, currentLang = 'ar', onViewDetails
           {/* زر تفاصيل المنتج مع أيقونة العين */}
           <button 
             className="action-circle-btn" 
-            onClick={() => onViewDetails && onViewDetails(product)}
+            onClick={(e) => {
+              e.stopPropagation(); // منع انتقال الحدث للكرت الرئيسي
+              onViewDetails && onViewDetails(product);
+            }}
             aria-label="عرض تفاصيل المنتج"
           >
             <Eye size={18} />
           </button>
-
         </div>
 
         {/* مؤشرات التنقل بين الصور الثلاثة */}
         {images.length > 1 && (
-          <div className="image-dots-container">
+          <div className="image-dots-container" onClick={(e) => e.stopPropagation()}>
             {images.map((_, index) => (
               <button
                 key={index}
                 className={`image-dot ${index === activeImageIndex ? 'active' : ''}`}
-                onClick={() => setActiveImageIndex(index)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setActiveImageIndex(index);
+                }}
                 aria-label={`عرض الصورة رقم ${index + 1}`}
               ></button>
             ))}

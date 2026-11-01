@@ -83,6 +83,17 @@
   transform: scale(1.1);
   color: #8c6239;
 }
+
+/* زر قائمة الجوال */
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #2c2c2c;
+  padding: 0.4rem;
+}
+
 /* تنسيق قائمة اختيار اللغات المنسدلة */
 .lang-dropdown-container {
   position: relative;
@@ -124,9 +135,6 @@
   color: #8c6239;
 }
 
-.flag-icon {
-  font-size: 1.25rem;
-}
 .flag-svg {
   width: 24px;
   height: 16px;
@@ -134,16 +142,67 @@
   object-fit: cover;
   box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
+
 .brand-first-letter {
   color: #8c6239;
 } 
-/* التجاوب مع الهواتف */
+
+/* أنميشن ظهور القائمة بسلاسة في الجوال */
+@keyframes menuSlideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* التجاوب مع الهواتف وتوسيط الاسم مع الأنيشن */
 @media (max-width: 768px) {
+  .navbar {
+    position: relative;
+    padding: 1rem 4%;
+  }
+
+  .mobile-menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+  }
+
+  /* توسيط اسم المحل تماماً في منتصف الشاشة على الجوال */
+  .nav-brand {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    order: unset;
+    font-size: 1.6rem;
+  }
+
+  .nav-actions {
+    z-index: 2;
+  }
+
   .nav-links {
     display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    padding: 1.5rem 0;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    border-top: 1px solid #f0e6db;
+    gap: 1.2rem;
+    text-align: center;
   }
-  
-  .navbar {
-    padding: 1rem 5%;
+
+  .nav-links.active {
+    display: flex;
+    animation: menuSlideDown 0.35s ease forwards; /* تفعيل أنميشن النزول السلس */
   }
 }
