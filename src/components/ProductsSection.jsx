@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import ProductCard from './ProductCard';
 import './ProductsSection.css';
 
@@ -34,6 +34,20 @@ const translations = {
 export default function ProductsSection({ currentLang = 'ar', onViewDetails }) {
   const t = translations[currentLang] || translations.ar;
   const [searchTerm, setSearchTerm] = useState('');
+
+  const bestRef = useRef(null);
+  const saleRef = useRef(null);
+  const newRef = useRef(null);
+
+  const scrollContainer = (ref, direction) => {
+    if (ref.current) {
+      const scrollAmount = 350;
+      ref.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   const products = [
     {
@@ -131,6 +145,7 @@ export default function ProductsSection({ currentLang = 'ar', onViewDetails }) {
     <section className="products-section" id="products">
       <div className="products-container">
         
+        {/* خانة البحث */}
         <div className="search-bar-container">
           <input 
             type="text" 
@@ -144,11 +159,19 @@ export default function ProductsSection({ currentLang = 'ar', onViewDetails }) {
         {/* 1. قسم الأكثر مبيعا */}
         {bestSellers.length > 0 && (
           <div className="category-block" id="best">
-            <h2 className="section-category-title">{t.titles.best}</h2>
-            <div className="products-grid">
-              {bestSellers.map(product => (
-                <ProductCard key={product.id} product={product} currentLang={currentLang} onViewDetails={onViewDetails} />
-              ))}
+            <div className="category-header-row">
+              <h2 className="section-category-title">{t.titles.best}</h2>
+            </div>
+            <div className="slider-outer-container">
+              <button className="slider-side-btn slider-prev" onClick={() => scrollContainer(bestRef, 'left')}>&#10094;</button>
+              <div className="products-slider" ref={bestRef}>
+                {bestSellers.map(product => (
+                  <div className="slider-card-wrapper" key={product.id}>
+                    <ProductCard product={product} currentLang={currentLang} onViewDetails={onViewDetails} />
+                  </div>
+                ))}
+              </div>
+              <button className="slider-side-btn slider-next" onClick={() => scrollContainer(bestRef, 'right')}>&#10095;</button>
             </div>
           </div>
         )}
@@ -156,11 +179,19 @@ export default function ProductsSection({ currentLang = 'ar', onViewDetails }) {
         {/* 2. قسم التخفيضات */}
         {saleProducts.length > 0 && (
           <div className="category-block" id="sale">
-            <h2 className="section-category-title">{t.titles.sale}</h2>
-            <div className="products-grid">
-              {saleProducts.map(product => (
-                <ProductCard key={product.id} product={product} currentLang={currentLang} onViewDetails={onViewDetails} />
-              ))}
+            <div className="category-header-row">
+              <h2 className="section-category-title">{t.titles.sale}</h2>
+            </div>
+            <div className="slider-outer-container">
+              <button className="slider-side-btn slider-prev" onClick={() => scrollContainer(saleRef, 'left')}>&#10094;</button>
+              <div className="products-slider" ref={saleRef}>
+                {saleProducts.map(product => (
+                  <div className="slider-card-wrapper" key={product.id}>
+                    <ProductCard product={product} currentLang={currentLang} onViewDetails={onViewDetails} />
+                  </div>
+                ))}
+              </div>
+              <button className="slider-side-btn slider-next" onClick={() => scrollContainer(saleRef, 'right')}>&#10095;</button>
             </div>
           </div>
         )}
@@ -168,11 +199,19 @@ export default function ProductsSection({ currentLang = 'ar', onViewDetails }) {
         {/* 3. قسم الجديد */}
         {newProducts.length > 0 && (
           <div className="category-block" id="new">
-            <h2 className="section-category-title">{t.titles.new}</h2>
-            <div className="products-grid">
-              {newProducts.map(product => (
-                <ProductCard key={product.id} product={product} currentLang={currentLang} onViewDetails={onViewDetails} />
-              ))}
+            <div className="category-header-row">
+              <h2 className="section-category-title">{t.titles.new}</h2>
+            </div>
+            <div className="slider-outer-container">
+              <button className="slider-side-btn slider-prev" onClick={() => scrollContainer(newRef, 'left')}>&#10094;</button>
+              <div className="products-slider" ref={newRef}>
+                {newProducts.map(product => (
+                  <div className="slider-card-wrapper" key={product.id}>
+                    <ProductCard product={product} currentLang={currentLang} onViewDetails={onViewDetails} />
+                  </div>
+                ))}
+              </div>
+              <button className="slider-side-btn slider-next" onClick={() => scrollContainer(newRef, 'right')}>&#10095;</button>
             </div>
           </div>
         )}

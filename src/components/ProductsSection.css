@@ -6,7 +6,7 @@
 }
 
 .products-container {
-  max-width: 1200px;
+  max-width: 1250px;
   margin: 0 auto;
 }
 
@@ -36,8 +36,15 @@
 }
 
 .category-block {
-  margin-bottom: 4rem;
-  scroll-margin-top: 110px; /* ضمان التوقف في المكان الصحيح فوق العنوان مباشرة */
+  margin-bottom: 4.5rem;
+  scroll-margin-top: 110px;
+}
+
+.category-header-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.5rem;
 }
 
 .section-category-title {
@@ -45,25 +52,91 @@
   font-size: 2rem;
   font-weight: 800;
   color: #2c2c2c;
-  margin-bottom: 2rem;
+  margin: 0;
   letter-spacing: 1px;
 }
 
-.products-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+/* حاوية الشريط والأزرار الجانبية */
+.slider-outer-container {
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
-/* التجاوب مع الهواتف والشاشات الصغيرة */
+/* أزرار التنقل على الجوانب (للكمبيوتر) */
+.slider-side-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 1.5px solid #8c6239;
+  background-color: #ffffff;
+  color: #8c6239;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, transform 0.2s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  z-index: 10;
+}
+
+.slider-side-btn:hover {
+  background-color: #8c6239;
+  color: #ffffff;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.slider-prev {
+  left: -25px;
+}
+
+.slider-next {
+  right: -25px;
+}
+
+/* شريط المنتجات الأفقي المتحرك */
+.products-slider {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch; /* دعم التمرير السلس باللمس في هواتف أيفون وأندرويد */
+  padding: 10px 5px;
+  width: 100%;
+}
+
+.products-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.slider-card-wrapper {
+  min-width: 320px;
+  flex: 0 0 auto;
+  scroll-snap-align: center; /* محاذاة الكرت عند السحب باللمس */
+}
+
+/* التجاوب مع الهواتف والشاشات الصغيرة للتمرير بالسحب بحرية */
 @media (max-width: 992px) {
-  .products-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .slider-side-btn {
+    display: none; /* إخفاء السهمين في الهاتف والاعتماد كلياً على اللمس */
+  }
+  
+  .products-slider {
+    justify-content: flex-start; /* بدء التمرير من اليسار/اليمين بسلاسة */
+    scroll-snap-type: x mandatory; /* تثبيت الحركة عند السحب بالإصبع */
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
 
 @media (max-width: 576px) {
-  .products-grid {
-    grid-template-columns: 1fr;
+  .slider-card-wrapper {
+    min-width: 280px;
   }
 }
