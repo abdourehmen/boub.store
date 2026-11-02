@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Services from './components/Services';
@@ -7,9 +8,11 @@ import Testimonials from './components/Testimonials';
 import Footer from './components/Footer';
 import ProductModal from './components/ProductModal';
 import CheckoutModal from './components/CheckoutModal';
+import AdminPanel from './components/AdminPanel';
 import './components/Animations.css';
 
-export default function App() {
+// مكون مستقل لصفحة المتجر الرئيسية لحفظ الحالة (State) والنوافذ المنبثقة
+function StorePage() {
   const [lang, setLang] = useState('ar');
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [checkoutData, setCheckoutData] = useState(null);
@@ -48,5 +51,19 @@ export default function App() {
         />
       )}
     </>
+  );
+}
+
+export default function App() {
+  return (
+    <Router>
+      <Routes>
+        {/* صفحة المتجر الرئيسية */}
+        <Route path="/" element={<StorePage />} />
+        
+        {/* صفحة لوحة التحكم */}
+        <Route path="/admin" element={<AdminPanel />} />
+      </Routes>
+    </Router>
   );
 }
